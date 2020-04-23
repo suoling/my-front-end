@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模板语法</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- ----------------文本---------------- -->
+    <span>文本插值：Message: {{ msg }}</span><br>
+    <!-- v-once 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。
+    但请留心这会影响到该节点上的其它数据绑定： -->
+    <span v-once>文本插值，v-once：这个将不会改变: {{ msg }}</span>
+    <hr />
+    <!-- ----------------原始 HTML---------------- -->
+    <!-- 双大括号会将数据解释为`普通文本`，而非 HTML 代码。
+    为了输出真正的 HTML，你需要使用 v-html 指令： -->
+    <!-- 双大括号中的内容不能直接作为HTML，因为这样会忽略解析属性值中的数据绑定。 -->
+    <!-- 注意：你不能使用 v-html 来复合局部模板，因为 Vue 不是基于字符串的模板引擎。
+    反之，对于用户界面 (UI)，`组件`更适合作为`可重用`和`可组合`的`基本单位`。 -->
+    <!-- 注意：你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致` XSS 攻击`。
+    请只对可信内容使用 HTML 插值，绝不要对用户提供的内容使用插值。 -->
+    <p>双花括号中的内容编译为文本：Using mustaches: {{ rawHtml }}</p>
+    <p>解析html，v-html：Using v-html directive: <span v-html="rawHtml"></span></p>
+    <hr />
+    <!-- ----------------Attribute---------------- -->
+    <!-- html属性绑定用v-bind 指令 -->
+    <div v-bind:id="dynamicId">属性绑定：绑定id</div>
+    <!-- 对于布尔 attribute (它们只要存在就意味着值为 true)，v-bind 工作起来略有不同，在这个例子中： -->
+    <!-- 如果 isButtonDisabled 的值是 null、undefined 或 false，
+    则 disabled attribute 甚至不会被包含在渲染出来的 <button> 元素中。
+    如：当isButtonDisabled为null时，页面展示：<button>Button</button> -->
+    <button v-bind:disabled="isButtonDisabled">Button，属性绑定：绑定disabled，有注意事项</button>
+    <hr />
+    <!-- ----------------使用 JavaScript 表达式---------------- -->
+    <!-- 每个绑定都只能包含单个表达式 -->
+    JavaScript 表达式1：{{ number + 1 }}<br>
+    JavaScript 表达式2：{{ ok ? 'YES' : 'NO' }}<br>
+    JavaScript 表达式3：{{ message.split('').reverse().join('') }}
+    <div v-bind:id="'list-' + id">JavaScript 表达式4：属性id</div>
+    <!-- 这是语句，不是表达式 -->
+    <!-- {{ var a = 1 }} -->
+    <!-- 流控制也不会生效，请使用三元表达式 -->
+    <!-- {{ if (ok) { return message } }} -->
+    <!-- 注意：模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。
+    你不应该在模板表达式中试图访问用户定义的全局变量。 -->
+    <hr />
+    <!-- ----------------指令---------------- -->
+    <!-- 指令 (Directives) 是带有 v- 前缀的特殊 attribute。
+    指令 attribute 的值预期是单个 `JavaScript 表达式` (v-for 是例外情况，稍后我们再讨论)。
+    指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。 -->
+    <!-- 这里，v-if 指令将根据表达式 seen 的值的真假来`插入/移除` <p> 元素。 -->
+    <p v-if="seen">指令v-if：现在你看到我了</p>
+    <!-- 一些指令能够接收一个“参数”，在指令名称之后以冒号表示。
+    例如，v-bind 指令可以用于响应式地更新 HTML attribute： -->
+    <!-- 在这里 href 是参数，告知 v-bind 指令将该元素的 href attribute 与表达式 url 的值绑定。 -->
+    <a v-bind:href="url">.....</a>
+  </div>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        msg: 'xixi',
+        rawHtml: '<span style="color: red">this should be red</span>',
+        dynamicId: 'testid',
+        isButtonDisabled: null,
+        number: 1,
+        ok: '1',
+        message: 'hello',
+        id: 'wsl',
+        seen: true
+      },
+      mounted() {
+        setTimeout(() => {
+          this.msg = 'update'
+        }, 3000)
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 实例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="box1">
+    <p>实例创建时就存在的值：a的值{{a}}</p>
+    <p>b不是响应式的，b的值：{{b}}</p>
+    <!-- 这里的 `b` 不会更新！ -->
+    <button @click="b='update'">click me</button>
+  </div>
+  <hr>
+  <div id="box2">
+    <p>b的值{{b}}</p>
+    <!-- 这里的 `b` 会更新！ -->
+    <button @click="b='update'">click me</button>
+  </div>
+  <hr>
+  <div id="box3">
+    <p>{{ foo }}</p>
+    <!-- 这里的 `foo` 不会更新！ -->
+    <button v-on:click="foo = 'baz'">Change it</button>
+  </div>
+  <hr>
+  <div id="example">
+
+  </div>
+  <script>
+    // -------------------------------------
+    // 我们的数据对象
+    var data = { a: 1 }
+
+    // 该对象被加入到一个 Vue 实例中
+    var vm1 = new Vue({
+      el: '#box1',
+      data: data
+    })
+
+    // 获得这个实例上的属性
+    // 返回源数据中对应的字段
+    console.log(vm1.a == data.a) // true
+    
+    // 设置属性也会影响到原始数据
+    vm1.a = 2
+    console.log(data.a) // 2
+
+    // ……反之亦然
+    data.a = 3
+    console.log(vm1.a) // 3
+    // -------------------------------------
+    // 注意：只有当实例被创建时就已经存在于 data 中的属性才是响应式的
+    // 下边的 b 不是响应式的，对 b 的改动将不会触发任何视图的更新
+    vm1.b = 'hi'
+    
+    new Vue({
+      el: '#box2',
+      data: {
+        // 你会在晚些时候需要一个属性，但是一开始它为空或不存在，那么你仅需要设置一些初始值
+        b: ''
+      }
+    })
+    // -------------------------------------
+    var obj = {
+      foo: 'bar'
+    }
+    // 使用 Object.freeze()，这会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
+    Object.freeze(obj)
+
+    new Vue({
+      el: '#box3',
+      data: obj
+    })
+    // -------------------------------------
+    // Vue 实例暴露的一些有用的`实例属性`与`方法`。它们都有前缀 $，以便与用户定义的属性区分开来。
+    var data = { a: 1 }
+    var vm = new Vue({
+      el: '#example',
+      data: data
+    })
+
+    console.log(vm.$data === data) // => true
+    console.log(vm.$el === document.getElementById('example')) // => true
+    // $watch 是一个实例方法
+    vm.$watch('a', function (newValue, oldValue) {
+      // 这个回调将在 `vm.a` 改变后调用
+    })
+  </script>
+</body>
+</html>

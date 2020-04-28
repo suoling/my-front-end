@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单输入绑定</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="box1">
+    <!-- ---------------- 文本框 -------------------- -->
+    <!-- 在文本区域插值 (<textarea>{{text}}</textarea>) 并不会生效，应用 v-model 来代替。 -->
+    <textarea>111</textarea>
+    <!-- value="111"，此处的value不会生效 -->
+    <textarea value="111" placeholder="add multiple lines"></textarea>
+    <textarea v-model="message" placeholder="add multiple lines"></textarea>
+    <!-- ---------------- 复选框 -------------------- -->
+    <!-- 单个复选框，绑定到布尔值 -->
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+    <!-- 多个复选框，绑定到同一个数组： -->
+    <div id='example-3'>
+      <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+      <label for="jack">Jack</label>
+      <input type="checkbox" id="john" value="John" v-model="checkedNames">
+      <label for="john">John</label>
+      <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+      <label for="mike">Mike</label>
+      <br>
+      <span>Checked names: {{ checkedNames }}</span>
+    </div>
+    <!-- 选择框 单选-->
+    <!-- 如果 v-model 表达式的初始值未能匹配任何选项，
+    <select> 元素将被渲染为“未选中”状态。
+    在 iOS 中，这会使用户无法选择第一个选项。
+    因为这样的情况下，iOS 不会触发 change 事件。
+    因此，更推荐像上面这样提供一个值为空的禁用选项。 -->
+    <div id="example-5">
+      <select v-model="selected">
+        <option disabled value="">请选择</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <span>Selected: {{ selected }}</span>
+    </div>
+    <!-- 选择框 多选-->
+    <div id="example-6">
+      <select v-model="selectedArr" multiple style="width: 50px;">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <br>
+      <span>Selected1: {{ selectedArr }}</span>
+    </div>
+  </div>
+  <script>
+    // 对于需要使用输入法 (如中文、日文、韩文等) 的语言，
+    // 你会发现 v-model 不会在输入法组合文字过程中得到更新。
+    // 如果你也想处理这个过程，请使用 input 事件。
+
+    new Vue({
+      el: '#box1',
+      data: {
+        message: 'hello textarea',
+        checked: true,
+        checkedNames: [],
+        selected: '',
+        selectedArr: []
+      }
+    })
+  </script>
+</body>
+</html>

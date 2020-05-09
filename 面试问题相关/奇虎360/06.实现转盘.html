@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #ball {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: black;
+      position: relative;
+      border: 1px solid black;
+      overflow: hidden;
+    }
+    #ball:before {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      left: 0;
+      top: 0;
+      background-color: #fff;
+    }
+    #ball:after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      bottom: 0;
+      right: 0;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- 补充css样式实现圆饼（4等份）的效果，其中圆的直径为100px -->
+  <div id="ball"></div>
+</body>
+</html>

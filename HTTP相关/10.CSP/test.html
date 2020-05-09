@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https://cdn.bootcss.com/; form-action 'self'">
+    <title>Document</title>
+</head>
+<body>
+    <div>this is content</div>
+    <form action="http://baidu.com">
+        <input type="submit" />
+    </form>
+    <img src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/qrcode/zbios_efde696.png" alt="">
+    <script>
+        console.log('inline js')
+        fetch('http://www.baidu.com')
+    </script>
+    <script src="testjs"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+</body>
+<!-- // CSP  详细的搜索 mdn csp
+// Content-Security-Policy  内容安全策略
+// 作用:
+//     限制资源获取
+//     报告资源获取越权
+// 限制方式
+//     default-src 限制全局
+//     指定资源类型
+//         connect-src  manifest-src  img-src  font-src  media-src  style-src  frame-src  script-src  ... -->
+</html> 

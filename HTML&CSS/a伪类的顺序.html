@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #ele {
+      display: block;
+      width: 100px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      color: #fff;
+      background-color: orange; 
+    }
+    #ele:link {
+      background-color: blue !important;
+    }
+    #ele:visited {
+      background-color: yellow;
+    }
+    #ele:hover {
+      background-color: pink;
+    }
+    #ele:active {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <a id="ele" href="http://www.baidu.com">嘻嘻哈哈</a>
+  <!-- :link(未访问链接)，:visited(已访问的链接)，:hover(鼠标悬停)，:active(鼠标按下)
+  a标签伪类 正确的顺序 是：lvha(:link--:visited--:hover--:active)
+  上述那样的执行顺序，其实本质还是“同等优先权的样式，写在后边的会覆盖前边”，a标签的伪类只不过是又结合了不同的动作顺序，动作的触发顺序决定了伪类的顺序必须按lvha来写。
+  因为前2者两种状态是常态，而后2者是即时状态，当即时状态触发时，要覆盖常态，所以2个即时状态要放在后边；
+  因为在常态下：如果a标签被访问过后，就要呈现被访问过的状态，所以visited 要放在link后边；
+  因为鼠标按下时，伴随着悬停的a标签上，所以要想active覆盖hover，就必须把active放后边；
+  另外 :link 和 a 的样式有可能会冲突
+  注意： 当 标签的 href 属性为空的时候，:link样式不会生效；当 标签的 href 属性不为空的时候，:link 样式才会生效，这时候，如果 标签正常样式 和 a：link 冲突了的话，以写在后面的那个为准； -->
+</body>
+</html>

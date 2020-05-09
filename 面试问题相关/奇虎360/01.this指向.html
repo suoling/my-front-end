@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 以下代码，alert出来的值是多少，并说一下原因
+    window.val = 1
+    var json = {
+      val: 10,
+      dbl: function () {
+        this.val *= 2
+      }
+    }
+    json.dbl()  // 20
+    var dbl = json.dbl
+    dbl() // 2
+    json.dbl.call(window)  // 4
+    alert(window.val + json.val)  // 24
+  </script>
+</body>
+</html>
+

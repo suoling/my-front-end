@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .parent {
+      width: 100%;
+      height: 200px;
+      display: flex;
+    }
+    .left, .right {
+      height: 100%;
+    }
+    /* flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+    flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+    该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。
+    建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。 */
+    .left {
+      flex: 0 0 200px;
+      background-color: yellow;
+      margin-right: 5px;
+    }
+    .right {
+      flex-grow: 1;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="left">1</div>
+    <div class="right">2</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      display: grid;
+      grid-template-columns: 300px auto 300px;
+      grid-template-rows: 300px;
+    }
+    .left {
+      background-color: yellow;
+    }
+    .center {
+      background-color: red;
+    }
+    .right {
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="left">左侧</div>
+    <div class="center">中间</div>
+    <div class="right">右侧</div>
+  </div>
+</body>
+</html>

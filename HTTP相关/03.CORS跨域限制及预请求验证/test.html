@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // CORS跨域限制:
+        //     允许的方法有:GET  HEAD  POST
+        //     允许的Content-Type有: text/plain  multipart/form-data  application/x-www-form-urlencoded
+        //     其余的限制:
+        //         1.请求头的限制,具体见:(https://fetch.spec.whatwg.org/#cors-safelisted-request-header)
+        //         2.XMLHttpRequestUpload对象均没有注册任何事件监听器(很少使用)
+        //         3.请求中没有使用ReadableStream对象(很少使用)
+
+    </script>
+</body>
+<script>
+    fetch('http://localhost:8887/', {
+            method: 'put',
+            headers: {
+                'X-Test-Cors': '123'
+            }
+        })
+</script>
+</html>

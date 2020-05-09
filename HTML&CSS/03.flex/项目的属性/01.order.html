@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+    .parent {
+      width: 400px;
+      height: 400px;
+      background-color: pink;
+      display: flex;
+      flex-direction: row;
+    }
+    .child {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      border: 1px solid #000;
+      box-sizing: border-box;
+    }
+    /* order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。
+    order: <integer>; */
+    .one {
+      order: 2;
+    }
+    .two {
+      order: -1;
+    }
+    .three {
+      order: 4;
+    }
+    .four {
+      order: -9;
+    }
+    .five {
+      order: 99;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="child one">1</div>
+    <div class="child two">2</div>
+    <div class="child three">3</div>
+    <div class="child four">4</div>
+    <div class="child five">5</div>
+  </div>
+</body>
+</html>

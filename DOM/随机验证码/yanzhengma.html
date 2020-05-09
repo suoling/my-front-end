@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js实现随机验证码功能</title>
+    <style>
+        *{margin:0;padding:0}
+        #myform{
+            width:500px;
+            height:200px;
+            position:absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin:auto;
+            border:1px solid #000;
+            line-height:200px;
+        }
+        #box{
+            width:294px;
+            height:200px;
+            position: absolute;
+            left: 0;
+            right:0;
+            bottom:0;
+            top:0;
+            margin: auto;
+        }
+        input{
+            height: 24px;
+        }
+        #code{
+            width:80px;
+            height:26px;
+            background: #d2d2d2;
+            border:  0;
+        }
+
+    </style>
+</head>
+<body onload="createCode()">
+<form id="myform">
+    <div id="box">
+        <input type="text" placeholder="请输入验证码" id="myInput"/>
+        <input id="code" type="button">
+        <input type="button" value="验证" id="mybtn">
+    </div>
+</form>
+</body>
+<script>
+    let oCode = document.getElementById('code');
+    let oBtn = document.getElementById('mybtn');
+    let oInput = document.getElementById('myInput');
+    let str = '';
+    function createCode(){
+        let arr = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',0,1,2,3,4,5,6,7,8,9];
+        for(let i = 0; i < 4; i++){
+            //生成0-35的随机数
+            str = str.concat(arr[Number.parseInt(Math.random() * 36)]);
+        }
+        oCode.value= str;
+    }
+    function check(){
+        let data = oInput.value.toUpperCase().trim();
+        if(data === str){
+            window.location = 'https://www.baidu.com';
+        }else if(data === ''){
+            alert('请输入验证码');
+        }else{
+            alert("验证码错误");
+            //记得清空输入框内容，方便用户使用
+            oInput.value = '';
+            //验证码也要重新生成
+            str='';
+            createCode();
+        }
+    }
+    oCode.addEventListener('click',function(){
+        createCode();
+    });
+    oBtn.addEventListener('click',function(){
+        check();
+    })
+
+
+
+
+</script>
+</html>

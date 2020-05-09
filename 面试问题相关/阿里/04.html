@@ -1,0 +1,32 @@
+<!-- 不依赖类库，实现按钮随滚动固定在顶部的效果，如动图所示 
+![](https://img.alicdn.com/tfs/TB1hzc5epGWBuNjy0FbXXb4sXXa-300-250.gif) -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body style="min-height:2000px">
+    <div style="height:200px;background:red">上方内容</div>
+    <button>固定顶部</button>
+    <p style="height:200px;background:yellow">下方的内容</p>
+
+    <script>
+      var buttonEle = document.getElementsByTagName("button")[0];
+      window.addEventListener("scroll", function() {
+        var scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop > 200) {
+          buttonEle.style.position = "fixed";
+          buttonEle.style.top = "0px";
+          buttonEle.style.left = "0px";
+        } else {
+          buttonEle.style.position = "static";
+        }
+      });
+    </script>
+  </body>
+</html>

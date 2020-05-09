@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eval</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        eval("x=10;y=20;document.write(x*y)") // 200
+        document.write("<br />")
+
+        document.write(eval("2+2")) // 4
+        document.write("<br />")
+
+        var x=10
+        document.write(eval(x+17)) // 27
+        document.write("<br />")
+
+        eval("alert('Hello world')")
+
+        console.log(eval("2+3"))	// 5
+        var myeval = eval;	// myeval: ƒ eval() { [native code] } 可能会抛出 EvalError 异常<未测试>
+        console.log('myeval:', myeval)
+        console.log(myeval("2+3"));	// 5 可能会抛出 EvalError 异常<未测试>
+        
+        try  {
+            alert("Result:" + eval(prompt("Enter an expression:","")));
+        }
+        catch(exception) {
+            alert(exception);
+        }
+
+        // JSON字符串转换为JSON对象
+        var dataJson = "{'a': '1', 'b': '2'}"
+        var dataObj = eval('('+ dataJson +')');
+        console.log('dataJson:', dataJson)
+        console.log('dataObj:', dataObj)
+    </script>
+</body>
+</html>

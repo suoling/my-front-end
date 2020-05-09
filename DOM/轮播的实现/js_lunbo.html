@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #box{
+            width: 495px;
+            height: 300px;
+            position:absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin: auto;
+            overflow: hidden;
+        }
+        li{
+            position:absolute;
+            left:0;
+            right:0;
+            bottom:0;
+            top:0;
+            list-style:none;
+        }
+        img {
+          width: 250px;
+          height: 200px;
+        }
+        #left,#right{
+            width:80px;
+            height:80px;
+        }
+        #left{
+            float:left;
+            margin-left: 100px;
+            margin-top: 30%;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+        #right{
+            float:right;
+            margin-right:100px;
+            margin-top:30%;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+        .p1{
+            transform:translate3d(-120px,0,0) scale(0.81);
+        }
+        .p2{
+            transform:translate3d(0px,0,0) scale(0.81);
+            transform-origin:0 50%;
+            opacity: 0.8;
+            z-index: 2;
+        }
+        .p3{
+            transform:translate3d(120px,0,0) scale(1);
+            z-index: 3;
+            opacity: 1;
+        }
+        .p4{
+            transform:translate3d(240px,0,0) scale(0.81);
+            transform-origin:100% 50%;
+            opacity: 0.8;
+            z-index: 2;
+        }
+        .p5{
+            transform:translate3d(360px,0,0) scale(0.81);
+        }
+        .p6{
+            transform:translate3d(480px,0,0) scale(0.81);
+        }
+        .p7{
+            transform:translate3d(600px,0,0) scale(0.81);
+        }
+    </style>
+</head>
+<body>
+<!-- <img id='left' src="img/left.png"> -->
+<div id='left'></div>
+<div id="box">
+    <ul id="swiper">
+        <li class="p7"><a><img src="img/1.jpg"/></a></li>
+        <li class="p6"><a><img src="img/2.jpg"/></a></li>
+        <li class="p5"><a><img src="img/3.jpg"/></a></li>
+        <li class="p4"><a><img src="img/4.jpg"/></a></li>
+        <li class="p3"><a><img src="img/5.jpg"/></a></li>
+        <li class="p2"><a><img src="img/6.jpg"/></a></li>
+        <li class="p1"><a><img src="img/7.jpg"/></a></li>
+    </ul>
+</div>
+<!-- <img id="right" src="img/right.png"> -->
+<div id='right'></div>
+</body>
+<script>
+
+    // 一、思路
+    // 1、使用css3新特性transform对所有图片进行定位（设计样式）。
+    // 2、每次向前滚（左箭头），向后滚（右箭头）都是对样式的改变。
+    // 左箭头：照片的顺序：1,2,3,4,5,6,7
+    // 样式的顺序：7,6,5,4,3,2,1
+    // 照片应用上述css样式后：照片排列为7,6,5,4,3,2,1
+    // 假设初始化时样式为3为使照片处于中央的样式，初始化是显示在中间的照片为5，
+    // 当点击左箭头时，需要将6显示在中间，即使6对应于样式3。
+    // 思想为保持照片的顺序不变，修改样式数组的顺序。
+    // 把用于保存样式的数组的最后一个元素头插在该数组的头部，然后再删除最后一个元素。
+    // 右箭头同理：将样式数组首部的元素添加到该数组的尾部，并删除样式数组首部的元素。
+   window.onload = function(){
+        let cArr=["p7","p6","p5","p4","p3","p2","p1"];
+        let oPre = document.getElementById('left');
+        let oNext = document.getElementById('right');
+        let oUl = document.getElementById('swiper');
+        let oLi = oUl.getElementsByTagName('li');
+        let oImage =  oUl.getElementsByTagName('img');
+        let index = 0;
+        oPre.addEventListener('click',function(){
+            previmg();
+        });
+        oNext.addEventListener('click',function(){
+            nextimg();
+        });
+       function previmg(){
+           cArr.unshift(cArr[cArr.length-1]);   //把最后一张照片的css样式沾到第一张照片上
+           cArr.pop();   //再把最后一张照片的css样式删除
+           for(let i = 0; i < oLi.length; i++){
+               oLi[i].className = cArr[i];
+           }
+       }
+       function nextimg(){
+           cArr.push(cArr[0]);
+           cArr.shift();
+           for(let i = 0; i < oLi.length; i++){
+               oLi[i].className = cArr[i];
+           }
+       }
+       var timer = setInterval(nextimg,3000);
+   }
+</script>
+</html>

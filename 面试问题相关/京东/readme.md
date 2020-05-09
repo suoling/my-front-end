@@ -1,0 +1,21 @@
+### 京东
+
+- 谈一下闭包
+- 谈一下原型链
+- 谈一下ES6新语法
+- 让一个盒子垂直居中的方法
+- 移动端适配
+- 浏览器兼容问题
+- SessionStorage，LocalStorage，cookie，sessionq区别
+- 跨域怎么解决
+- HTTP，HTTPS，HTTP2的特点
+- web网站安全（web攻击）
+- React的生命周期
+- Vue的生命周期
+- 小程序的生命周期
+- React和Vue的区别，哪个比较好用，为什么
+- html2canvas的原理
+- Preact为什么比React轻量
+- Promise实现原理
+- require和import的区别
+- module.exports和export的区别

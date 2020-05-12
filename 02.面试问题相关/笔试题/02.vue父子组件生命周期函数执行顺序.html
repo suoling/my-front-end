@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生命周期函数</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="components-demo">
+    <button-counter :parentid="id"></button-counter>
+    <div @click="id++">传值给子组件</div>
+  </div>
+
+  <script>
+
+    // 定义一个名为 button-counter 的新组件
+    Vue.component('button-counter', {
+      props: {
+        parentid: {
+          type: Number,
+          default: 0
+        }
+      },
+      data: function () {
+        return {
+          count: 0
+        }
+      },
+      template: '<button v-on:click="count++">You clicked me {{ count }} times,父传子{{ computedVal }}.</button>',
+      computed: {
+        computedVal () {
+          return `${this.parentid}-${this.count}`
+        }
+      },
+      beforeCreate() {
+        console.log('子beforeCreate')
+      },
+      created() {
+        console.log('子created')
+      },
+      beforeMount() {
+        console.log('子beforeMount')
+      },
+      mounted() {
+        console.log('子mounted')
+      },
+      beforeUpdate() {
+        console.log('子beforeUpdate')
+      },
+      updated() {
+        console.log('子updated')
+      },
+      beforeDestory() {
+        console.log('子beforeDestory')
+      },
+      destoryed() {
+        console.log('子destoryed')
+      }
+    })
+
+    new Vue({
+      el: '#components-demo',
+      data() {
+        return {
+          id: 11
+        }
+      },
+      methods: {
+      },
+      beforeCreate() {
+        console.log('父beforeCreate')
+      },
+      created() {
+        console.log('父created')
+      },
+      beforeMount() {
+        console.log('父beforeMount')
+      },
+      mounted() {
+        console.log('父mounted')
+      },
+      beforeUpdate() {
+        console.log('父beforeUpdate')
+      },
+      updated() {
+        console.log('父updated')
+      },
+      beforeDestory() {
+        console.log('父beforeDestory')
+      },
+      destoryed() {
+        console.log('父destoryed')
+      }
+    })
+    // 加载渲染过程
+    // 父beforeCreate
+    // 父created
+    // 父beforeMount
+    // 子beforeCreate
+    // 子created
+    // 子beforeMount
+    // 子mounted
+    // 父mounted
+
+    // 子组件更新过程
+    // 父beforeUpdate
+    // 子beforeUpdate
+    // 子updated
+    // 父updated
+
+    // 父组件更新过程
+    // 父beforeUpdate
+    // 父update
+
+    // 销毁过程
+    // 父beforeDestroy
+    // 子beforeDestroy
+    // 子destroyed
+    // 父destroyed
+
+  </script>
+</body>
+</html>

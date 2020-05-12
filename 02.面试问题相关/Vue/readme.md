@@ -1,0 +1,3 @@
+- Vuex中action和mutation的区别，它在源码中做了哪些限制，action做不了同步state的，action的返回值是什么类型
+- 说一下Vue-router的钩子函数（全局钩子和组件钩子），它里边有哪些参数
+- Vue-router有哪些模式
